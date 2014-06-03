@@ -24,7 +24,6 @@ Vagrant::Config.run do |config|
     chef.add_recipe "rvm::vagrant"
     chef.add_recipe "rvm::system"
     chef.add_recipe "git"
-    chef.add_recipe "postgresql"
 
     chef.json.merge!({
       :rvm => {
