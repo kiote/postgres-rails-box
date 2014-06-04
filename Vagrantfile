@@ -3,7 +3,9 @@
 
 $script = <<SCRIPT
 echo I am provisioning...
-date > /etc/vagrant_provisioned_at
+if `tty -s`; then
+  date > /etc/vagrant_provisioned_at
+fi
 SCRIPT
 
 Vagrant.configure("2") do |config|
@@ -21,16 +23,12 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = ["cookbooks"]
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
-    chef.add_recipe "rvm::vagrant"
-    chef.add_recipe "rvm::system"
     chef.add_recipe "git"
-
-    chef.json.merge!({
-      :rvm => {
-        :default_ruby => 'ruby-2.0.0'
-      }
-    })
   end
+
+  config.vm.provision :shell, :path => "Vagrant-setup/install-system.sh"
+  config.vm.provision :shell, :path => "Vagrant-setup/install-rvm.sh",  :args => "stable"
+  config.vm.provision :shell, :path => "Vagrant-setup/install-ruby.sh", :args => "2.1.2"
 
   # PostgreSQL Server port forwarding
   config.vm.forward_port 5432, 15432
