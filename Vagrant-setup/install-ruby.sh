@@ -19,4 +19,8 @@ sudo chown -R vagrant /usr/local/rvm
 # create project gemset
 rvm use $1@gitlabhq --create
 
-sudo chown -R vagrant /usr/local/rvm/gems/ruby-$1@gitlabhq
+#kind of hardocde here
+sudo chown -R vagrant /usr/local/rvm/gems/ruby-2.1.2@gitlabhq
+
+mkdir /vagrant/tmp
+mkdir /vagrant/log
