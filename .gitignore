@@ -1,3 +1,5 @@
 .vagrant
 gitlabhq
+log
+tmp
 cookbooks
