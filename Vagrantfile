@@ -17,8 +17,10 @@ Vagrant::Config.run do |config|
   config.vm.share_folder "bootstrap", "/mnt/bootstrap", ".", :create => true
   config.vm.provision :shell, :path => "Vagrant-setup/bootstrap.sh"
 
+  config.ssh.forward_agent = true
+
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["cookbooks", "chef/cookbooks"]
+    chef.cookbooks_path = ["cookbooks"]
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
     chef.add_recipe "git"

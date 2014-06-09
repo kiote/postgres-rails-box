@@ -9,4 +9,4 @@ sudo apt-get install libpq-dev -y
 sudo apt-get install libmysql-ruby libmysqlclient-dev -y
 
 # nginx
-sudo apt-get install nginx
+sudo apt-get install nginx -y
