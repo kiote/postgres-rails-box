@@ -1,6 +1,5 @@
 #!/bin/sh -e
 sudo ln -s /vagrant/gitlabhq/config/unicorn_init.sh /etc/init.d/unicorn
-mkdir /vagrant/tmp
 mkdir /vagrant/log
 mkdir /vagrant/tmp/pids
 
