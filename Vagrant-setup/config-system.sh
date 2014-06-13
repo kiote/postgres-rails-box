@@ -1,17 +1,22 @@
 #!/bin/sh -e
-sudo ln -s /vagrant/gitlabhq/config/unicorn_init.sh /etc/init.d/unicorn
-mkdir /vagrant/log
-mkdir /vagrant/tmp/pids
+
+HOME_DIR="/vagrant/gitlabhq/"
+
+echo ">>> Unicorn init script <<<"
+sudo ln -s ${HOME_DIR}config/unicorn_init.sh /etc/init.d/unicorn
 
 chmod -R 777 /vagrant/tmp
 chmod -R 777 /vagrant/log
 
-# nginx
-sudo rm /etc/nginx/sites-enabled/default
-sudo ln -s /vagrant/gitlabhq/config/nginx.conf /etc/nginx/sites-enabled/gitlabhq
-sudo service nginx restart
-
-# unicorn
-chmod +x /vagrant/gitlabhq/config/unicorn_init.sh
-sudo ln -s /vagrant/gitlabhq/config/unicorn_init.sh /etc/init.d/unicorn
+chmod +x ${HOME_DIR}config/unicorn_init.sh
+sudo cp ${HOME_DIR}config/unicorn.rb.example ${HOME_DIR}config/unicorn.rb
 sudo service unicorn restart
+
+echo ">>> nginx configuration <<<"
+##
+sudo apt-get update -y
+sudo apt-get install nginx -y
+##
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s ${HOME_DIR}config/nginx.conf /etc/nginx/sites-enabled/gitlabhq
+sudo service nginx restart
