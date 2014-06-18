@@ -8,7 +8,7 @@ sudo apt-get install libicu-dev -y
 sudo apt-get install -y git-core
 
 #postgres
-# sudo apt-get install libpq-dev -y --fix-missing
+sudo apt-get install libpq-dev -y --fix-missing
 
 # mysql
 # sudo apt-get install libmysql-ruby libmysqlclient-dev -y
@@ -35,7 +35,7 @@ sudo apt-get install -y curl
 sudo apt-get install -y openssh-server
 sudo apt-get install -y checkinstall
 sudo apt-get install -y libxml2-dev
-sudo apt-get install -y libxslt
+sudo apt-get install libxml2 libxml2-dev libxslt1-dev -y
 sudo apt-get install -y libcurl4-openssl-dev
 sudo apt-get install -y libicu-dev
 sudo apt-get install -y logrotate
