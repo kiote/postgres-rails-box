@@ -18,7 +18,7 @@ sudo apt-get update -y
 sudo apt-get install nginx -y
 ##
 sudo rm /etc/nginx/sites-enabled/default
-sudo ln -s ${HOME_DIR}config/nginx.conf /etc/nginx/sites-enabled/gitlabhq
+sudo ln -s ${HOME_DIR}lib/support/nginx/gitlab /etc/nginx/sites-enabled/gitlabhq
 sudo service nginx restart
 
 echo ">>> installing gems <<<"
@@ -37,9 +37,12 @@ rvm pkg install openssl; rvm reinstall all —with-openssl-dir=$rvm_path/usr
 # mkdir for unicorn pid
 mkdir /tmp/pids
 mkdir /tmp/sockets
+sudo chown vagrant /tmp/pids/
+sudo chown vagrant /tmp/sockets/
+sudo chown vagrant /home/git/
+sudo chown vagrant /home/git/repositories/
 
 # create repo root
-sudo mkdir /home/git/
 sudo chown vagrant /home/git/
 mkdir /home/git/repositories
 
